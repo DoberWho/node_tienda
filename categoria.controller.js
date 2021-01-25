@@ -41,6 +41,36 @@ exports.post = async function (req, res, next) {
     return res.status(code).json(obj);
 }
 
+exports.editar = async function (req, res, next) {
+
+    const body = req.body;
+    const query = req.query;
+    const params = req.params; 
+
+    let id = body._id
+   
+    let ObjectId = require('mongodb').ObjectID;
+    let obj = await model.updateOne({"_id":ObjectId(id)}, {"name":body.name})
+
+    if (!obj || (obj.ok == 1) && (obj.n <= 0)){
+        let code = 404 
+        return res.status(code).json(obj);
+    }
+
+    /// =====================
+    let obj = await model.findById(id)
+    if (!obj){
+        let code = 404 
+        return res.status(code).json(obj);
+    }
+    obj.name = body.name
+    await obj.save()
+
+    
+    let code = 200 
+    return res.status(code).json(obj);
+} 
+
 exports.detail = async function (req, res, next) {
 
     const body = req.body;
