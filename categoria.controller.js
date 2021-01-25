@@ -1,4 +1,6 @@
 const model = require("./categoria.model")
+let mongo = require('mongodb')
+let ObjectId = mongo.ObjectID;
 
 exports.filtroCategoria = function (obj){
     if (!obj) return false
