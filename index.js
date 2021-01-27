@@ -17,5 +17,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
  
 app.use('/categoria', require('./categoria/categoria.route') ) 
 app.use('/etiqueta',  require('./etiqueta/etiqueta.route') ) 
+app.use('/auth',      require('./auth/auth.route') ) 
 
 console.log('Escuchando Puerto: ' + port) 
