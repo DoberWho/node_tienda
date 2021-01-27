@@ -51,7 +51,7 @@ exports.editar = async function (req, res, next) {
     /// =====================
 
     /// ===================== FORMA 2 de Editar
-    let obj = await model.findById(id)
+    obj = await model.findById(id)
     if (!obj){
         let code = 404 
         return res.status(code).json(obj);
