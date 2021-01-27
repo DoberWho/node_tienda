@@ -15,6 +15,6 @@ app.listen(port)
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
  
-app.use('/categoria', require('./categoria.route') ) 
+app.use('/categoria', require('./categoria/categoria.route') ) 
 
 console.log('Escuchando Puerto: ' + port) 
