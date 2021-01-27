@@ -90,19 +90,8 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Categoria 04",
-									"type": "text"
-								},
-								{
-									"key": "id",
-									"value": "4",
-									"type": "text"
-								}
-							],
+							"mode": "raw",
+							"raw": " {\r\n    \"name\":\"Categoria 04\",\r\n    \"_id\":\"600ebf82b2b7103944439278\"\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -152,7 +141,7 @@
 			]
 		},
 		{
-			"name": "Tags",
+			"name": "Etiquetas",
 			"item": [
 				{
 					"name": "List",
@@ -160,7 +149,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/tags/read",
+							"raw": "http://127.0.0.1:3000/etiqueta",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -168,10 +157,9 @@
 								"0",
 								"1"
 							],
-							"port": "8000",
+							"port": "3000",
 							"path": [
-								"tags",
-								"read"
+								"etiqueta"
 							]
 						}
 					},
@@ -183,14 +171,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "T-01",
-									"type": "text"
-								}
-							],
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Tag 01\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -198,7 +180,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/tags/create",
+							"raw": "http://127.0.0.1:3000/etiqueta",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -206,10 +188,9 @@
 								"0",
 								"1"
 							],
-							"port": "8000",
+							"port": "3000",
 							"path": [
-								"tags",
-								"create"
+								"etiqueta"
 							]
 						}
 					},
@@ -218,25 +199,10 @@
 				{
 					"name": "Delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "1",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/tags/delete",
+							"raw": "http://127.0.0.1:3000/etiqueta/60114b171622d84a14969c77",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -244,10 +210,10 @@
 								"0",
 								"1"
 							],
-							"port": "8000",
+							"port": "3000",
 							"path": [
-								"tags",
-								"delete"
+								"etiqueta",
+								"60114b171622d84a14969c77"
 							]
 						}
 					},
@@ -256,22 +222,11 @@
 				{
 					"name": "EDITAR",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Categoria 04",
-									"type": "text"
-								},
-								{
-									"key": "id",
-									"value": "4",
-									"type": "text"
-								}
-							],
+							"mode": "raw",
+							"raw": " {\r\n    \"name\":\"Etiqueta 01\",\r\n    \"_id\":\"60114b7a1622d84a14969c78\"\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -279,7 +234,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/tags/update",
+							"raw": "http://127.0.0.1:3000/etiqueta",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -287,10 +242,32 @@
 								"0",
 								"1"
 							],
-							"port": "8000",
+							"port": "3000",
 							"path": [
-								"tags",
-								"update"
+								"etiqueta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/etiqueta/60114b7a1622d84a14969c78",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"etiqueta",
+								"60114b7a1622d84a14969c78"
 							]
 						}
 					},
