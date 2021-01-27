@@ -1,17 +1,6 @@
-const model = require("./categoria.model")
+const model = require("./etiqueta.model")
 let mongo = require('mongodb')
 let ObjectId = mongo.ObjectID;
-
-exports.filtroCategoria = function (obj){
-    if (!obj) return false
-    if (!obj.name) return false 
-
-    if (obj == null) return false
-    if (obj == undefined) return false
-    if (!obj) return false 
-
-    return (obj.name.includes('Cat'))
-}
 
 exports.get = async function (req, res, next) {
 
@@ -70,7 +59,6 @@ exports.editar = async function (req, res, next) {
     obj.name = body.name
     await obj.save()
     /// ===================== 
-
     
     let code = 200 
     return res.status(code).json(obj);
