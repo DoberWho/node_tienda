@@ -1,0 +1,14 @@
+https://developer.mozilla.org/es/docs/Web/HTTP/Status
+
+200 OK
+
+// CLIENTE
+401 Unauthorized
+403 Forbidden
+404 Not Found
+405 Method Not Allowed
+418 I'm a teapot
+
+// SERVIDOR
+500 Internal Server Error
+503 Service Unavailable

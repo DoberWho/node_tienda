@@ -1,5 +1,6 @@
 const model = require("./user.model")
 let mongo = require('mongodb')
+let jwt = require('jsonwebtoken');
 let ObjectId = mongo.ObjectID;
 
 exports.register = async function (req, res, next) {
@@ -30,12 +31,31 @@ exports.login = async function (req, res, next) {
     const query = req.query;
     const params = req.params;
   
-    console.log("BODY: "+body);
-   
+    console.log("BODY: "+body); 
+    let email = body.email
+    let passw = body.password
 
-    let data = {}
+    let opts = {
+        email: email
+    }
+    let user = await model.findOne(opts)
+    if (!user){
+        let code = 404
+        return res.status(code).json(null)
+    }
+
+    const isValid = await model.isValidPassword(user.password, passw)
+    if (!isValid){
+        let code = 401
+        return res.status(code).json(null)
+    }
+
+    user = model.parse(user)
+    let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '1h' })
+ 
     let code = 200 
-    return res.status(code).json(data);
+    return res.status(code).json(token);
+    
 }
 
 exports.editar = async function (req, res, next) {

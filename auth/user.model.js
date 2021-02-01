@@ -41,8 +41,8 @@ schema.methods.isValidPassword = async function(password){
   return compare;
 }
 
-model.isValidPassword = async function(user, password){ 
-  const compare = await bcrypt.compare(password, user.password);
+model.isValidPassword = async function(userPassword, password){ 
+  const compare = await bcrypt.compare(password, userPassword);
   return compare;
 }
 
