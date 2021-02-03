@@ -59,8 +59,9 @@ model.parse = function (obj){
   let keys = Object.keys(obj); 
 
   keys.forEach(key=>{  
+    if (key.includes('password')) return;
     data[key] = obj[key] 
-  })
+  })  
 
   return data
 }

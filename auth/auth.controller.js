@@ -51,8 +51,10 @@ exports.login = async function (req, res, next) {
     }
 
     user = model.parse(user)
-    let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '1h' })
- 
+    delete user.email;     
+
+    let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '365d' })
+  
     let code = 200 
     return res.status(code).json(token);
     
@@ -63,9 +65,16 @@ exports.editar = async function (req, res, next) {
     const body = req.body;
     const query = req.query;
     const params = req.params;
-  
-    console.log("BODY: "+body);
-   
+    const decoded = req.decoded
+
+    let id = decoded._id || decoded.id
+
+    let user = await model.findById(id)
+    
+    user.name = body.name
+    user.lastname = body.lastname
+
+    user = await user.save()
 
     let data = {}
     let code = 200 
@@ -81,7 +90,7 @@ exports.detail = async function (req, res, next) {
     console.log("BODY: "+body);
    
 
-    let data = {}
+    let data = model.parse(user)
     let code = 200 
     return res.status(code).json(data);
 }
