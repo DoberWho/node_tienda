@@ -11,7 +11,7 @@ exports.register = async function (req, res, next) {
   
     console.log("BODY: "+body); 
 
-    let user = new model()
+    let user = new model() // TODO: Explicación
     user.email = body.email
 
     const hPass = await model.getPassword(body.password);
@@ -36,9 +36,9 @@ exports.login = async function (req, res, next) {
     let passw = body.password
 
     let opts = {
-        email: email
+        email: email // TODO: Explicación
     }
-    let user = await model.findOne(opts)
+    let user = await model.findOne(opts) // TODO: Explicación Await
     if (!user){
         let code = 404
         return res.status(code).json(null)
@@ -50,7 +50,7 @@ exports.login = async function (req, res, next) {
         return res.status(code).json(null)
     }
 
-    user = model.parse(user)
+    user = model.parse(user) // TODO: Explicacion
     delete user.email;     
 
     let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '365d' })
@@ -72,11 +72,9 @@ exports.editar = async function (req, res, next) {
     let user = await model.findById(id)
     
     user.name = body.name
-    user.lastname = body.lastname
+    user.lastname = body.lastname 
 
-    user = await user.save()
-
-    let data = {}
+    let data = model.parse(user)
     let code = 200 
     return res.status(code).json(data);
 }

@@ -1,8 +1,24 @@
 const jwt = require('jsonwebtoken');
 
-exports.verifyToken = async function(req, res, next){
-
+exports.getToken = function(req){
+   
     let token = req.headers['Authorization']
+    if (!token){
+        token = req.headers['authorization']
+    } 
+
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+    }
+    
+    return token
+}
+
+exports.verifyToken = async function(req, res, next){
+ 
+    let token = exports.getToken(req)
+    console.log(req.headers)
     if (!token){
         let data = {
             message: 'NO_TOKEN'

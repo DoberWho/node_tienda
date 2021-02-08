@@ -2,18 +2,18 @@ const model = require("./categoria.model")
 let mongo = require('mongodb')
 let ObjectId = mongo.ObjectID;
 
-exports.filtroCategoria = function (obj){
+exports.filtroCategoria = function (obj){  
+
+    if (obj == null) return false
+    if (obj == undefined) return false 
+
     if (!obj) return false
     if (!obj.name) return false 
 
-    if (obj == null) return false
-    if (obj == undefined) return false
-    if (!obj) return false 
-
     return (obj.name.includes('Cat'))
-}
+} 
 
-exports.get = async function (req, res, next) {
+exports.get = async function (req, res, next) { 
 
     const body = req.body;
     const query = req.query;
@@ -22,8 +22,12 @@ exports.get = async function (req, res, next) {
     console.log("BODY: "+body);
     
     //const items = await model.find({}, {_id:1, name:1}) 
-    let items = await model.find({})
-    items = items.map(model.parse) 
+    let options = {}
+    let items = await model.find(options)
+
+
+    
+    items = items.map(model.parse)  
 
     let code = 200 
     return res.status(code).json(items);
@@ -96,7 +100,7 @@ exports.detail = async function (req, res, next) {
 
 exports.delete = async function (req, res, next) {
 
-    const body = req.body;
+    const body = req.body; // TODO: Explicacion body, params, query
     const query = req.query;
     const params = req.params; 
 

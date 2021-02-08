@@ -43,4 +43,4 @@ app.use('/categoria', require('./categoria/categoria.route') )
 app.use('/etiqueta',  require('./etiqueta/etiqueta.route') ) 
 app.use('/auth',      require('./auth/auth.route') ) 
 
-console.log('Escuchando Puerto: ' + port) 
+console.log('Escuchando Puerto: ' + port)  
