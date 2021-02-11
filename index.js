@@ -39,6 +39,8 @@ app.listen(port)
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
  
+app.use('/carrito',   require('./carrito/carrito.route') ) 
+
 app.use('/producto',  require('./producto/producto.route') ) 
 app.use('/categoria', require('./categoria/categoria.route') ) 
 app.use('/etiqueta',  require('./etiqueta/etiqueta.route') ) 
