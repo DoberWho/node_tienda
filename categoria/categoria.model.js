@@ -10,9 +10,9 @@ const opts = {
     },
 }
 const params = { timestamps: true }
-let Category = new Schema(opts, params);
+let schema = new Schema(opts, params);
 
-let model = mongoose.model('category', Category);
+let model = mongoose.model('category', schema);
 
 model.parse = function (obj){
 

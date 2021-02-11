@@ -24,9 +24,7 @@ exports.get = async function (req, res, next) {
     //const items = await model.find({}, {_id:1, name:1}) 
     let options = {}
     let items = await model.find(options)
-
-
-    
+ 
     items = items.map(model.parse)  
 
     let code = 200 
