@@ -5,8 +5,10 @@ let Schema = mongoose.Schema;
 const opts = {
     name: {
       type: String,
+      unique:true,
       lowercase:true,
-      trim:true
+      trim:true, 
+      required: [true, 'ERROR_REQUIRED']  
     },
     description: {
       type: String,

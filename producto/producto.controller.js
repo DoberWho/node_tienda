@@ -34,11 +34,20 @@ exports.post = async function (req, res, next) {
     obj.name = body.name
     obj.description = body.description
     obj.price = body.price
-    obj.stock = body.stock
+    
+    if (body.stock){
+        obj.stock = body.stock
+    }
+
     obj.categoria = body.categoria
     obj.etiquetas = body.etiquetas || []
 
+   try {
     obj = await obj.save()
+   } catch (error) {
+    let code = 403 
+    return res.status(code).json(error);
+   }
     
     let code = 200 
     return res.status(code).json(obj);
