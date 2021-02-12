@@ -8,7 +8,8 @@ exports.get = async function (req, res, next) {
     const query = req.query;
     const params = req.params;
   
-    let idUsuario = query.id  
+    console.log(req.usuario)
+    let idUsuario = req.usuario._id 
     let item = await model.findOne({usuario:idUsuario}).populate("productos.producto")
     if (!item){
         item = new model()
@@ -67,8 +68,6 @@ exports.delete = async function (req, res, next) {
     let code = 200 
     return res.status(code).json(params);
 }
-
-
 
 exports.test = async function (req, res, next) {
 

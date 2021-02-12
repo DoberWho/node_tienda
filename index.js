@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 let app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
   
 const MONGODB = 'mongodb://localhost:27017/tienda'
 mongoose.connect(MONGODB, { useNewUrlParser: true })
@@ -38,8 +38,10 @@ corsOpts = function(req, res, next) {
 app.listen(port) 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
+
+let m = require('./middleware')
  
-app.use('/carrito',   require('./carrito/carrito.route') ) 
+app.use('/carrito',  m.isLoged,  require('./carrito/carrito.route') ) 
 
 app.use('/producto',  require('./producto/producto.route') ) 
 app.use('/categoria', require('./categoria/categoria.route') ) 
