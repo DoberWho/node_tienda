@@ -7,8 +7,10 @@ exports.isLoged = async function (req, res, next) {
     const query = req.query;
     const params = req.params;  
 
-    let token = query.token
-
+    let headers = req.headers
+    console.log(headers)
+    
+    let token = headers.authorization 
 
     let testToken = async function(error, decoded) {
         if (error){

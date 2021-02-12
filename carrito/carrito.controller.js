@@ -7,8 +7,7 @@ exports.get = async function (req, res, next) {
     const body = req.body;
     const query = req.query;
     const params = req.params;
-  
-    console.log(req.usuario)
+   
     let idUsuario = req.usuario._id 
     let item = await model.findOne({usuario:idUsuario}).populate("productos.producto")
     if (!item){
@@ -29,7 +28,7 @@ exports.post = async function (req, res, next) {
     const query = req.query;
     const params = req.params; 
  
-    let idUsuario = query.id  
+    let idUsuario = req.usuario._id 
     let carrito = await model.findOne({usuario:idUsuario})
     if (!carrito){
         carrito = new model()
@@ -55,7 +54,7 @@ exports.delete = async function (req, res, next) {
     const query = req.query;
     const params = req.params; 
 
-    let id = params.id
+    let id = req.usuario._id 
     console.log("BODY: "+id); 
 
     let obj = await model.findById(id)
