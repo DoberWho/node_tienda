@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"user02@user.user\",\r\n    \"password\":\"Test1234\",\r\n    \"name\":\"Usuario\",\r\n    \"lastname\":\"Usuario 01\" \r\n}",
+							"raw": "{\r\n    \"email\":\"ad@ad.ad\",\r\n    \"password\":\"Test1234\",\r\n    \"name\":\"Usuario\",\r\n    \"lastname\":\"Administrador\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,15 +23,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/auth/register",
-							"protocol": "http",
+							"raw": "{{url}}/auth/register",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"auth",
 								"register"
@@ -47,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"user02@user.user\",\r\n    \"password\":\"Test1234\"\r\n}",
+							"raw": "{\r\n    \"email\":\"ad@ad.ad\",\r\n    \"password\":\"Test1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,15 +50,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/auth/login",
-							"protocol": "http",
+							"raw": "{{url}}/auth/login",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"auth",
 								"login"
@@ -93,15 +83,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/auth",
-							"protocol": "http",
+							"raw": "{{url}}/auth",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"auth"
 							]
@@ -120,15 +105,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/categoria",
-							"protocol": "http",
+							"raw": "{{url}}/categoria",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categoria"
 							]
@@ -140,7 +120,13 @@
 					"name": "create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\":\"Categoria 01\"\r\n}",
@@ -151,15 +137,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/categoria",
-							"protocol": "http",
+							"raw": "{{url}}/categoria",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categoria"
 							]
@@ -173,15 +154,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/categoria/60096f127cd1b93ed4cc9318",
-							"protocol": "http",
+							"raw": "{{url}}/categoria/60096f127cd1b93ed4cc9318",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categoria",
 								"60096f127cd1b93ed4cc9318"
@@ -205,15 +181,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/categoria",
-							"protocol": "http",
+							"raw": "{{url}}/categoria",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categoria"
 							]
@@ -227,15 +198,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/categoria/60096f127cd1b93ed4cc9318",
-							"protocol": "http",
+							"raw": "{{url}}/categoria/60096f127cd1b93ed4cc9318",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"categoria",
 								"60096f127cd1b93ed4cc9318"
@@ -255,15 +221,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/etiqueta",
-							"protocol": "http",
+							"raw": "{{url}}/etiqueta",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{url}}"
 							],
-							"port": "3000",
 							"path": [
 								"etiqueta"
 							]
@@ -388,9 +349,15 @@
 					"name": "List",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsIl9pZCI6IjYwMTJhNDM0YjQ4YTI5Mjk2ODc2M2Y1NSIsIm5hbWUiOiJOdWV2byBOb21icmUiLCJsYXN0bmFtZSI6Ik51ZXZvIEFwZWxsaWRvcyIsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMjhUMTE6NDc6MDAuMDg2WiIsInVwZGF0ZWRBdCI6IjIwMjEtMDItMDNUMTI6MDU6NTQuODcxWiIsIl9fdiI6MCwiaWF0IjoxNjEzMTI2OTM3LCJleHAiOjE2NDQ2NjI5Mzd9.3mfFKKa7MsRF0qK0ZXDrYKhLMpRRNUWF8KIAUly9aHQ",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://127.0.0.1:3000/carrito?id=6012a434b48a292968763f55",
+							"raw": "http://127.0.0.1:3001/carrito",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -398,14 +365,15 @@
 								"0",
 								"1"
 							],
-							"port": "3000",
+							"port": "3001",
 							"path": [
 								"carrito"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "6012a434b48a292968763f55"
+									"key": "token",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
