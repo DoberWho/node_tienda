@@ -84,6 +84,16 @@ exports.test = async function (req, res, next) {
     })
     console.log(secundario)
 
+    items.forEach(item=>{
+        console.log(item)
+    })
+
+    let tercio = items.map(item=>{
+        return item.toLowerCase()
+    })
+    console.log(tercio)
+
+  
 
     let code = 200 
     return res.status(code).json(secundario);
