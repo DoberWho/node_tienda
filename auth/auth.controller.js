@@ -51,8 +51,8 @@ exports.login = async function (req, res, next) {
     }
 
     user = model.parse(user) // TODO: Explicacion
-    delete user.email;     
-
+    delete user.email;  
+    
     let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '365d' })
   
     let code = 200 
