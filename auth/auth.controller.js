@@ -7,18 +7,18 @@ exports.register = async function (req, res, next) {
 
     const body = req.body;
     const query = req.query;
-    const params = req.params;
+    const params = req.params;  
   
     console.log("BODY: "+body); 
 
-    let user = new model() // TODO: Explicación
+    let user = new model()
     user.email = body.email
 
     const hPass = await model.getPassword(body.password);
     user.password = hPass
     user.name = body.name
-    user.lastname = body.lastname
-    user = await user.save()
+    user.lastname = body.lastname 
+    user = await user.save() 
 
     let data = model.parse(user)
     let code = 200 
@@ -51,8 +51,8 @@ exports.login = async function (req, res, next) {
     }
 
     user = model.parse(user) // TODO: Explicacion
-    delete user.email;     
-
+    delete user.email;  
+    
     let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '365d' })
   
     let code = 200 

@@ -1,7 +1,7 @@
 'use strict';
-let mongoose = require('mongoose'); 
-const bcrypt = require('bcrypt')
+let mongoose = require('mongoose');  
 let Schema = mongoose.Schema;
+let moment = require('moment')
 
 const opts = {
   email: {       
@@ -15,6 +15,10 @@ const opts = {
     type: String,
     required: [true, 'ERROR_REQUIRED']
   },  
+  birth:{
+    type:Date,
+    default: Date.now
+  },
   name:  {
     type: String, 
     trim:true
@@ -37,18 +41,15 @@ let model = mongoose.model('user', schema);
 
 schema.methods.isValidPassword = async function(password){
   const user = this; 
-  const compare = await bcrypt.compare(password, user.password);
-  return compare;
+  return (user.password == password)
 }
 
-model.isValidPassword = async function(userPassword, password){ 
-  const compare = await bcrypt.compare(password, userPassword);
-  return compare;
+model.isValidPassword = async function(userPassword, password){  
+  return (userPassword == password)
 }
 
-model.getPassword = function(password){ 
-  const hPassword = bcrypt.hashSync(password, 10);
-  return hPassword;
+model.getPassword = function(password){  
+  return password;
 }
 
 model.parse = function (obj){
@@ -56,10 +57,15 @@ model.parse = function (obj){
   obj = JSON.parse( JSON.stringify( obj ) );
 
   let data = {}
-  let keys = Object.keys(obj); 
+  let keys = Object.keys(obj);  
 
   keys.forEach(key=>{  
     if (key.includes('password')) return;
+    if (key.includes('__v')) return;
+    if (key.includes('birth')){
+      data[key] = moment(obj[key]).format('DD-MM-YYY')
+      return
+    }
     data[key] = obj[key] 
   })  
 
