@@ -4,9 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
   
-//const MONGODB = 'mongodb://localhost:27017/tienda'
-const MONGODB = 'mongodb+srv://testDev:A.joker.1@tascluster-isld0.gcp.mongodb.net/tienda?retryWrites=true&w=majority'
-//const MONGODB = 'mongodb+srv://castelaocluster.hbhas.mongodb.net/tienda?retryWrites=true&w=majority'
+const MONGODB = 'mongodb://localhost:27017/tienda'
+//const MONGODB = 'mongodb+srv://castelao:Test1234@castelaocluster.hbhas.mongodb.net/tienda?retryWrites=true&w=majority'
 mongoose.connect(MONGODB, { useNewUrlParser: true })
 .then(()=> { console.log('OK: '+MONGODB)})
 .catch(()=> { console.log('Error: '+MONGODB)}) 
