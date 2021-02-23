@@ -38,7 +38,13 @@ exports.login = async function (req, res, next) {
     let opts = {
         email: email // TODO: Explicación
     }
-    let user = await model.findOne(opts) // TODO: Explicación Await
+    let data = {
+        password:1,
+        name:1, 
+        lastname:1,
+        role:1
+    }
+    let user = await model.findOne(opts, data) // TODO: Explicación Await
     if (!user){
         let code = 404
         return res.status(code).json(null)
@@ -48,10 +54,8 @@ exports.login = async function (req, res, next) {
     if (!isValid){
         let code = 401
         return res.status(code).json(null)
-    }
-
-    user = model.parse(user) // TODO: Explicacion
-    delete user.email;  
+    } 
+    delete user.password
     
     let token = jwt.sign(user, 'HolaMundo.1',  { expiresIn: '365d' })
   

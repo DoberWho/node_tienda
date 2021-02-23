@@ -10,7 +10,7 @@ exports.get = async function (req, res, next) {
   
     console.log("BODY: "+body);
     
-    //const items = await model.find({}, {_id:1, name:1}) 
+    //const items = await model.find({}, {_id:1, name:1})  
     let items = await model.find({})
     items = items.map(model.parse) 
 
@@ -22,8 +22,8 @@ exports.post = async function (req, res, next) {
 
     const body = req.body;
     const query = req.query;
-    const params = req.params; 
- 
+    const params = req.params;  
+
     let obj = new model()
     obj.name = body.name
     obj = await obj.save()
@@ -42,7 +42,16 @@ exports.editar = async function (req, res, next) {
    
     /// ===================== FORMA 1 de Editar
     let ObjectId = require('mongodb').ObjectID;
-    let obj = await model.updateOne({"_id":ObjectId(id)}, {"name":body.name})
+
+    let idObj = {
+        "_id":ObjectId(id)
+    }
+
+    let dataObj = {
+        "name":body.name
+    }
+
+    let obj = await model.updateOne(idObj, dataObj)
 
     if (!obj || (obj.ok == 1) && (obj.n <= 0)){
         let code = 404 
@@ -91,12 +100,17 @@ exports.delete = async function (req, res, next) {
     let id = params.id
     console.log("BODY: "+id); 
 
-    let obj = await model.findById(id)
-    if (!obj){
-        let code = 404 
-        return res.status(code).json(obj);
+    const data = await model.deleteOne({_id:id})
+    
+    if (data['ok'] != 1){
+        let code = 403
+        return res.status(code).json(params);
     }
-    await obj.delete()
+
+    if (data['n'] <= 0){
+        let code = 404
+        return res.status(code).json(params);
+    } 
     
     let code = 200 
     return res.status(code).json(params);
